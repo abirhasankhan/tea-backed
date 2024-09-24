@@ -1,20 +1,21 @@
 {
-  "name": "tea-backed",
-  "version": "1.0.0",
-  "description": "a backend for learning in Node.js",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon src/index.js"
-  },
-  "keywords": [
-    "javascript",
-    "backed",
-    "tea"
-  ],
-  "author": "abir khan",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.1.7"
-  }
+	"name": "tea-backed",
+	"version": "1.0.0",
+	"description": "a backend for learning in Node.js",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon src/index.js"
+	},
+	"keywords": [
+		"javascript",
+		"backed",
+		"tea"
+	],
+	"author": "abir khan",
+	"license": "ISC",
+	"devDependencies": {
+		"nodemon": "^3.1.7",
+		"prettier": "^3.3.3"
+	}
 }
