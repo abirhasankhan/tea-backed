@@ -38,7 +38,7 @@ const uplaodOnCloudinary = async (localFilePath) => {
     }
 }
 
-
+export { uplaodOnCloudinary }
 /*
 (async function () {
 
