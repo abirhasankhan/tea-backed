@@ -5,36 +5,36 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { DB_name } from "./constants.js";
 import connectDB from "./db/index.js";
+import { app } from "./app.js";
 
 dotenv.config({
     path: "./env",
 });
 
 
+// const app = express(); // Create an instance of Express
 
 
 connectDB()
 .then( () => {
 
+    app.on("error", (err) => {
 
-    app.on("error", (error) => {
+        console.log("Error: ", err);
+        throw err;
 
-        console.log("Error: ", error);
-        throw error;
+    });
 
-    })
-
-
-    app.listen(process.env.PORT || 8000, () => {
+    app.listen(process.env.PORT || 8080, () => {
 
         console.log(`Server is running on port: ${process.env.PORT || 8000}`);
 
-    })
+    });
     
 })
-.catch((error) => {
+.catch((err) => {
 
-    console.log("MongoDB connection failed !!! ", error);
+    console.log("MongoDB connection failed !!! ", err);
     
 })
 
