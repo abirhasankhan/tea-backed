@@ -1,5 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs'; // file system in node.js
+import path from 'path'; // For file path handling
+
 
 
 // Configuration
@@ -9,11 +11,13 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET
 });
 
-const uplaodOnCloudinary = async (localFilePath) => {
+// function upload to cloudinary
+const uploadOnCloudinary = async (localFilePath) => {
 
     try {
 
-        if (!localFilePath) {
+        // Check if the local file path is provided
+        if ( !localFilePath ) {
 
             return null;
         }
@@ -25,20 +29,38 @@ const uplaodOnCloudinary = async (localFilePath) => {
         })
 
         // File has been uploaded successfull
-        console.log("File is uploaded on cloudinary", uploadResult.url);
+        // console.log("File is uploaded on cloudinary", uploadResult.url);
 
+        // Successfully uploaded the file to Cloudinary
+        if (fs.existsSync(localFilePath)) {
+            
+            fs.unlinkSync(localFilePath); // Delete the local file to free up space
+        }
+
+        // Return the result from Cloudinary, which includes details like URL, public ID, etc.
         return uploadResult;
 
     } catch (error) {
 
-        // remove the locally saved temp file as the upload operation got failed
-        fs.unlinkSync(localFilePath);
+        // Log any errors that occur during the upload process
+        // console.error("Error uploading to Cloudinary:", error.message);
 
+        // Remove the locally saved temp file as the upload operation failed
+        if (fs.existsSync(localFilePath)) {
+
+            fs.unlinkSync(localFilePath); // Delete the local file
+        }
+
+
+        // return { error: "Failed to upload the file." };
         return null;
     }
 }
 
-export { uplaodOnCloudinary }
+export { uploadOnCloudinary }
+
+
+
 /*
 (async function () {
 
