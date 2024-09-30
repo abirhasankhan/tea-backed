@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
 
 export const verifyJWT = asyncHandler(async (req, res, next) => {
+    
     try {
         // Debugging logs to check if tokens are being passed correctly
         // console.log("Cookies: ", req.cookies);
@@ -29,7 +30,9 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         // Attaching user information to the request
         req.user = user;
         next();
+
     } catch (error) {
+
         // Return appropriate error message if JWT verification fails
         throw new ApiError(401, error?.message || "Invalid Access Token");
     }
