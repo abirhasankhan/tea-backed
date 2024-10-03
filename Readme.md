@@ -1,7 +1,5 @@
 # A backend for learning in Node.js
 
-Here's a structured `README.md` for your GitHub repository based on the project details you've provided:
-
 # Tea-Backed
 
 ## Description
